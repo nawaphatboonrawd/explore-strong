@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Explore Strong in You</title>
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
@@ -17,7 +18,6 @@ body{
 .container{
     max-width:430px;
     margin:auto;
-    min-height:100vh;
     padding:20px;
 }
 
@@ -63,9 +63,8 @@ button{
 <div id="start" class="card center">
 <h2>Explore Strong in You</h2>
 <p>สำรวจตัวเองว่าคุณมี<br>
-<b>ความเก่ง ความแกร่ง ความกล้า</b><br>
-อยู่ระดับไหน</p>
-<button class="startBtn" onclick="startGame()">เริ่มสำรวจตัวเอง</button>
+<b>ความเก่ง ความแกร่ง ความกล้า</b></p>
+<button class="startBtn" onclick="startGame()">เริ่ม</button>
 </div>
 
 <div id="quiz" class="hidden card">
@@ -110,77 +109,68 @@ button{
 
 <script>
 let questions = [
-{q:"1.1 เมื่อคุณได้รับงานยากที่ไม่เคยทำมาก่อน",
-options:[
-{text:"E – คิดวิธีใหม่และช่วยทีมทำ",score:5},
-{text:"G – เรียนรู้และทำจนสำเร็จ",score:4},
-{text:"S – ศึกษาและทำตามขั้นตอน",score:3},
+{q:"1.1 งานใหม่ยาก", options:[
+{text:"E – คิดวิธีใหม่และช่วยทีม",score:5},
+{text:"G – เรียนรู้และทำ",score:4},
+{text:"S – ทำตามขั้นตอน",score:3},
 {text:"L – รอคำแนะนำ",score:2},
-{text:"I – หลีกเลี่ยงงาน",score:1}
+{text:"I – หลีกเลี่ยง",score:1}
 ]},
-{q:"1.2 องค์กรมีระบบใหม่",
-options:[
-{text:"E – เรียนรู้จนเชี่ยวชาญและสอนคนอื่น",score:5},
-{text:"G – เรียนรู้และใช้ในงาน",score:4},
-{text:"S – ใช้เฉพาะงานตัวเอง",score:3},
+{q:"1.2 ระบบใหม่", options:[
+{text:"E – เชี่ยวชาญและสอนคนอื่น",score:5},
+{text:"G – เรียนรู้ใช้งาน",score:4},
+{text:"S – ใช้เฉพาะงาน",score:3},
 {text:"L – ใช้เมื่อจำเป็น",score:2},
-{text:"I – ไม่อยากใช้",score:1}
+{text:"I – ไม่ใช้",score:1}
 ]},
-{q:"1.3 การพัฒนาตัวเอง",
-options:[
-{text:"E – พัฒนาต่อเนื่องและสร้างองค์ความรู้",score:5},
-{text:"G – เข้าอบรมสม่ำเสมอ",score:4},
+{q:"1.3 พัฒนาตัวเอง", options:[
+{text:"E – พัฒนาและสร้างองค์ความรู้",score:5},
+{text:"G – เรียนรู้อย่างต่อเนื่อง",score:4},
 {text:"S – เรียนรู้เมื่อจำเป็น",score:3},
 {text:"L – ไม่ค่อยพัฒนา",score:2},
 {text:"I – ไม่สนใจ",score:1}
 ]},
-{q:"2.1 โปรเจกต์กดดัน",
-options:[
-{text:"E – เป็นพลังให้ทีม",score:5},
-{text:"G – ทำงานเต็มที่",score:4},
-{text:"S – ทำงานตัวเองให้เสร็จ",score:3},
-{text:"L – เครียดต้องให้ช่วย",score:2},
-{text:"I – อยากถอนตัว",score:1}
+{q:"2.1 งานกดดัน", options:[
+{text:"E – เป็นพลังทีม",score:5},
+{text:"G – ทำเต็มที่",score:4},
+{text:"S – ทำหน้าที่",score:3},
+{text:"L – เครียด",score:2},
+{text:"I – ถอนตัว",score:1}
 ]},
-{q:"2.2 ลูกค้าต่อว่า",
-options:[
-{text:"E – วิเคราะห์และแก้ปัญหาให้ลูกค้า",score:5},
-{text:"G – รับฟังและแก้ไข",score:4},
+{q:"2.2 ลูกค้าต่อว่า", options:[
+{text:"E – วิเคราะห์และแก้",score:5},
+{text:"G – รับฟังแก้ไข",score:4},
 {text:"S – แจ้งหัวหน้า",score:3},
-{text:"L – หลีกเลี่ยงลูกค้า",score:2},
+{text:"L – หลีกเลี่ยง",score:2},
 {text:"I – โต้เถียง",score:1}
 ]},
-{q:"2.3 ขัดแย้งในทีม",
-options:[
-{text:"E – ช่วยไกล่เกลี่ย",score:5},
+{q:"2.3 ขัดแย้งทีม", options:[
+{text:"E – ไกล่เกลี่ย",score:5},
 {text:"G – คุยหาทางออก",score:4},
 {text:"S – ทำงานตัวเอง",score:3},
-{text:"L – หลีกเลี่ยง",score:2},
+{text:"L – เลี่ยง",score:2},
 {text:"I – ไม่ร่วมงาน",score:1}
 ]},
-{q:"3.1 ระดมสมอง",
-options:[
-{text:"E – เสนอไอเดียและกระตุ้นทีม",score:5},
-{text:"G – เสนอความคิดเห็น",score:4},
+{q:"3.1 Brainstorm", options:[
+{text:"E – กระตุ้นทีม",score:5},
+{text:"G – เสนอไอเดีย",score:4},
 {text:"S – เสนอเมื่อมั่นใจ",score:3},
-{text:"L – เสนอเมื่อถูกถาม",score:2},
-{text:"I – ไม่เสนอ",score:1}
+{text:"L – รอถาม",score:2},
+{text:"I – ไม่พูด",score:1}
 ]},
-{q:"3.2 มีไอเดียใหม่",
-options:[
-{text:"E – ทดลองทำจริง",score:5},
+{q:"3.2 ไอเดียใหม่", options:[
+{text:"E – ลงมือทำ",score:5},
 {text:"G – เสนอหัวหน้า",score:4},
-{text:"S – เก็บไว้ก่อน",score:3},
-{text:"L – รอคนอื่นเสนอ",score:2},
+{text:"S – เก็บไว้",score:3},
+{text:"L – รอคนอื่น",score:2},
 {text:"I – ไม่เสนอ",score:1}
 ]},
-{q:"3.3 เห็นสิ่งที่ควรปรับปรุง",
-options:[
-{text:"E – เสนอและลงมือทำ",score:5},
+{q:"3.3 สิ่งควรปรับปรุง", options:[
+{text:"E – เสนอและทำ",score:5},
 {text:"G – เสนอแนวทาง",score:4},
-{text:"S – แจ้งผู้เกี่ยวข้อง",score:3},
-{text:"L – ไม่อยากยุ่ง",score:2},
-{text:"I – ปล่อยไป",score:1}
+{text:"S – แจ้ง",score:3},
+{text:"L – ไม่ยุ่ง",score:2},
+{text:"I – ปล่อย",score:1}
 ]}
 ];
 
@@ -229,60 +219,6 @@ if(score>=4) return "L";
 return "I";
 }
 
-function getAdvice(type, lvl){
-const adv = {
-skill:{
-E:"รักษามาตรฐาน Excellence และถ่ายทอดความรู้ให้ทีม",
-G:"เพิ่มความลึกของความเชี่ยวชาญ",
-S:"พัฒนาทักษะใหม่อย่างต่อเนื่อง",
-L:"เริ่มพัฒนาตัวเองแบบค่อยเป็นค่อยไป",
-I:"เร่งพัฒนาทักษะและเปิดใจเรียนรู้"
-},
-strong:{
-E:"ใช้พลังนี้เป็นผู้นำทีม",
-G:"ฝึกความเป็นผู้นำมากขึ้น",
-S:"ฝึกการตัดสินใจภายใต้ความกดดัน",
-L:"พัฒนาการจัดการอารมณ์",
-I:"ฝึก Resilience อย่างจริงจัง"
-},
-brave:{
-E:"เป็น Role Model ของความกล้า",
-G:"กล้าลงมือทำมากขึ้น",
-S:"เสนอไอเดียมากขึ้น",
-L:"ฝึกความมั่นใจ",
-I:"ฝึกกล้าแสดงออก"
-}
-};
-return adv[type][lvl];
-}
-
-function getReading(type, lvl){
-const readings = {
-skill:{
-E:"คุณเป็นคนเก่งระดับสูงและเป็นผู้นำได้",
-G:"คุณมีศักยภาพสูงและพัฒนาได้อีก",
-S:"คุณมีความสามารถที่มั่นคง",
-L:"คุณควรพัฒนาตัวเองเพิ่มเติม",
-I:"คุณต้องเร่งพัฒนาอย่างจริงจัง"
-},
-strong:{
-E:"คุณแกร่งมากและเป็นที่พึ่งของทีม",
-G:"คุณรับมือกับความกดดันได้ดี",
-S:"คุณรับมือสถานการณ์ทั่วไปได้",
-L:"คุณยังต้องพัฒนาความมั่นคง",
-I:"คุณควรฝึกการเผชิญปัญหา"
-},
-brave:{
-E:"คุณกล้าและเป็นแรงบันดาลใจ",
-G:"คุณกล้าแสดงออกได้ดี",
-S:"คุณกล้าในระดับหนึ่ง",
-L:"คุณควรเพิ่มความมั่นใจ",
-I:"คุณควรฝึกความกล้า"
-}
-};
-return readings[type][lvl];
-}
-
 function showResult(){
 document.getElementById("quiz").classList.add("hidden");
 document.getElementById("result").classList.remove("hidden");
@@ -292,23 +228,22 @@ let strong = scores[3]+scores[4]+scores[5];
 let brave = scores[6]+scores[7]+scores[8];
 let total = skill+strong+brave;
 
-let heroImg="";
-let heroName="";
+let heroImg="",heroName="";
 
 if(total>=37){
-heroImg="https://drive.google.com/file/d/11yhp2yTbcPnKEujsFuTc4s2FNEYF3k7Q/view?usp=sharing";
+heroImg="images/judy.png";
 heroName="Judy Hopps – Excellence";
 }else if(total>=28){
-heroImg="https://drive.google.com/file/d/1bRx5govxiMJ7AmW2Pifm0R8ncVe_P0VX/view?usp=sharing";
+heroImg="images/nick.png";
 heroName="Nick Wilde – Good";
 }else if(total>=19){
-heroImg="https://drive.google.com/file/d/1QDxq7mj3F3EXo6ExzbFjFrjaRIZpdIvv/view?usp=sharing";
+heroImg="images/bogo.png";
 heroName="Chief Bogo – Standard";
 }else if(total>=10){
-heroImg="https://drive.google.com/file/d/1oicDUcb4mRjQRP-FeBwgl3u8wBETx24k/view?usp=sharing";
+heroImg="images/flash.png";
 heroName="Flash – Low";
 }else{
-heroImg="https://drive.google.com/file/d/1GhHehHbD1dJ4mynGLAdYpgI9u2r8RpM9/view?usp=sharing";
+heroImg="images/lion.png";
 heroName="Mayor Lionheart – Improve";
 }
 
@@ -326,17 +261,14 @@ let strongLvl = categoryLevel(strong);
 let braveLvl = categoryLevel(brave);
 
 document.getElementById("advice").innerHTML =
-"<b>เก่ง ("+skillLvl+"):</b> "+getAdvice("skill",skillLvl)+"<br><br>"+
-"<b>แกร่ง ("+strongLvl+"):</b> "+getAdvice("strong",strongLvl)+"<br><br>"+
-"<b>กล้า ("+braveLvl+"):</b> "+getAdvice("brave",braveLvl);
+"<b>เก่ง:</b> "+skillLvl+"<br>"+
+"<b>แกร่ง:</b> "+strongLvl+"<br>"+
+"<b>กล้า:</b> "+braveLvl;
 
 document.getElementById("reading").innerHTML =
-"<b>ความเก่ง:</b> "+getReading("skill",skillLvl)+"<br><br>"+
-"<b>ความแกร่ง:</b> "+getReading("strong",strongLvl)+"<br><br>"+
-"<b>ความกล้า:</b> "+getReading("brave",braveLvl);
+"คุณมีแนวโน้ม "+skillLvl+" / "+strongLvl+" / "+braveLvl;
 
-let ctx=document.getElementById("radarChart");
-new Chart(ctx,{
+new Chart(document.getElementById("radarChart"),{
 type:'radar',
 data:{
 labels:['เก่ง','แกร่ง','กล้า'],
@@ -345,12 +277,7 @@ data:[skill,strong,brave]
 }]
 },
 options:{
-scales:{
-r:{
-min:0,
-max:15
-}
-}
+scales:{r:{min:0,max:15}}
 }
 });
 }
