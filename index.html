@@ -270,8 +270,7 @@ document.getElementById("reading").innerHTML =
 "<b>ความแกร่ง:</b> "+getReading("strong",strongLvl)+"<br><br>"+
 "<b>ความกล้า:</b> "+getReading("brave",braveLvl);
 
-let ctx=document.getElementById("radarChart");
-new Chart(ctx,{
+new Chart(document.getElementById("radarChart"),{
 type:'radar',
 data:{
 labels:['เก่ง','แกร่ง','กล้า'],
@@ -280,12 +279,7 @@ data:[skill,strong,brave]
 }]
 },
 options:{
-scales:{
-r:{
-min:0,
-max:15
-}
-}
+scales:{r:{min:0,max:15}}
 }
 });
 }
