@@ -261,14 +261,17 @@ let strongLvl = categoryLevel(strong);
 let braveLvl = categoryLevel(brave);
 
 document.getElementById("advice").innerHTML =
-"<b>เก่ง:</b> "+skillLvl+"<br>"+
-"<b>แกร่ง:</b> "+strongLvl+"<br>"+
-"<b>กล้า:</b> "+braveLvl;
+"<b>เก่ง ("+skillLvl+"):</b> "+getAdvice("skill",skillLvl)+"<br><br>"+
+"<b>แกร่ง ("+strongLvl+"):</b> "+getAdvice("strong",strongLvl)+"<br><br>"+
+"<b>กล้า ("+braveLvl+"):</b> "+getAdvice("brave",braveLvl);
 
 document.getElementById("reading").innerHTML =
-"คุณมีแนวโน้ม "+skillLvl+" / "+strongLvl+" / "+braveLvl;
+"<b>ความเก่ง:</b> "+getReading("skill",skillLvl)+"<br><br>"+
+"<b>ความแกร่ง:</b> "+getReading("strong",strongLvl)+"<br><br>"+
+"<b>ความกล้า:</b> "+getReading("brave",braveLvl);
 
-new Chart(document.getElementById("radarChart"),{
+let ctx=document.getElementById("radarChart");
+new Chart(ctx,{
 type:'radar',
 data:{
 labels:['เก่ง','แกร่ง','กล้า'],
@@ -277,7 +280,12 @@ data:[skill,strong,brave]
 }]
 },
 options:{
-scales:{r:{min:0,max:15}}
+scales:{
+r:{
+min:0,
+max:15
+}
+}
 }
 });
 }
